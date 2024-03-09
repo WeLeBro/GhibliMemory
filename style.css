@@ -1,0 +1,23 @@
+body {
+    background-image: url("./images/background.png");
+    background-size: cover;
+    color: white;
+    font-family: Bodoni, "Bodoni MT", "Didot", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+}
+
+#logo img {
+    max-height: 5em;
+    margin: 1em;
+}
+
+#made_by {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+
