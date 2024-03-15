@@ -1,0 +1,50 @@
+[
+    {
+        "image": "./images/calcifer.png",
+        "name": "Calcifer"
+    },
+    {
+        "image": "./images/chihiro.png",
+        "name": "Chihiro"
+    },
+    {
+        "image": "./images/chu_totoro.png",
+        "name": "Chu Totoro"
+    },
+    {
+        "image": "./images/haku.png",
+        "name": "Haku"
+    },
+    {
+        "image": "./images/jiji.png",
+        "name": "Jiji"
+    },
+    {
+        "image": "./images/kaonashi.png",
+        "name": "Kaonashi"
+    },
+    {
+        "image": "./images/kodama.png",
+        "name": "Kodama"
+    },
+    {
+        "image": "./images/oh_totoro.png",
+        "name": "Oh Totoro"
+    },
+    {
+        "image": "./images/ponyo.png",
+        "name": "Ponyo"
+    },
+    {
+        "image": "./images/san.png",
+        "name": "San"
+    },
+    {
+        "image": "./images/susuwatari.png",
+        "name": "Susuwatari"
+    },
+    {
+        "image": "./images/yubaba.png",
+        "name": "Yubaba"
+    }
+]
