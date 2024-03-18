@@ -89,7 +89,7 @@ function unflipCards() {
         firstCard.classList.remove("flipped");
         secondCard.classList.remove("flipped");
         resetBoard();
-    }, 500);
+    }, 600);
 }
 
 function resetBoard() {
