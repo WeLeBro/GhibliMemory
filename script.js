@@ -14,6 +14,17 @@ document.querySelector(".tries").textContent = tries;
 document.getElementById("high-score-value").textContent = highScore;
 document.getElementById("score-value").textContent = tries;
 
+// Initialize Sakura effect
+document.addEventListener('DOMContentLoaded', function() {
+    initSakura('sakura-container', {
+        colors: [
+            { gradientColorStart: 'rgba(255, 183, 197, 0.9)', gradientColorEnd: 'rgba(255, 197, 207, 0.9)', gradientColorDegree: 120 },
+            { gradientColorStart: 'rgba(255, 181, 179, 0.9)', gradientColorEnd: 'rgba(226, 183, 148, 0.9)', gradientColorDegree: 120 },
+            { gradientColorStart: 'rgba(252, 211, 197, 0.9)', gradientColorEnd: 'rgba(249, 248, 172, 0.9)', gradientColorDegree: 120 }
+        ]
+    });
+});
+
 // Fetch and initialize cards
 fetch("cards.json")
   .then((res) => res.json())
