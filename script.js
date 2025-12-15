@@ -1,4 +1,4 @@
-console.log("Hello, World!");
+console.log("ありがとうございます");
 
 // Game state
 const cardsGrid = document.querySelector(".cards-grid");
@@ -12,6 +12,7 @@ let highScore = localStorage.getItem("highScore") || "--";
 
 document.querySelector(".tries").textContent = tries;
 document.getElementById("high-score-value").textContent = highScore;
+document.getElementById("score-value").textContent = tries;
 
 // Fetch and initialize cards
 fetch("cards.json")
@@ -70,6 +71,7 @@ function flipCard() {
   secondCard = this;
   tries++;
   document.querySelector(".tries").textContent = tries;
+  document.getElementById("score-value").textContent = tries;
   lockBoard = true;
 
   checkMatch();
@@ -115,14 +117,33 @@ function restart() {
   shuffleCards();
   tries = 0;
   document.querySelector(".tries").textContent = tries;
+  document.getElementById("score-value").textContent = tries;
   document.getElementById("win-screen").classList.add("hidden");
+  document.getElementById("win-screen").classList.remove("show");
   generateCards();
 }
 
 // Show win screen with confetti
 function showWinScreen() {
   const winScreen = document.getElementById("win-screen");
+  const scoreText = document.getElementById("score-text");
+
+  // Calculate and display score text
+  let score;
+  if (tries >= 18 && tries <= 25) {
+    score = "Excellent";
+  } else if (tries >= 26 && tries <= 30) {
+    score = "Good";
+  } else if (tries >= 31 && tries <= 50) {
+    score = "Average";
+  } else {
+    score = "Fair";
+  }
+  scoreText.textContent = `Score: ${score}`;
+
+  // Show win screen with fade-in
   winScreen.classList.remove("hidden");
+  winScreen.classList.add("show");
 
   // Full-screen confetti
   const duration = 5 * 1000;
@@ -147,23 +168,16 @@ function showWinScreen() {
     }
   }());
 
-  // Calculate and display score
-  let score;
-  if (tries >= 18 && tries <= 25) {
-    score = "Excellent";
-  } else if (tries >= 26 && tries <= 30) {
-    score = "Good";
-  } else if (tries >= 31 && tries <= 50) {
-    score = "Average";
-  } else {
-    score = "Fair";
-  }
-  document.getElementById("score-value").textContent = score;
-
   // Update high score if applicable
   if (highScore === "--" || tries < parseInt(highScore)) {
     highScore = tries;
     localStorage.setItem("highScore", highScore);
     document.getElementById("high-score-value").textContent = highScore;
   }
+
+  // Hide win screen after 5 seconds with fade-out
+  setTimeout(() => {
+    winScreen.classList.remove("show");
+    winScreen.classList.add("hidden");
+  }, 5000);
 }
