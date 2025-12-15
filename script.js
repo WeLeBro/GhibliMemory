@@ -10,6 +10,7 @@ let totalPairs;
 let matchedPairs = 0;
 let highScore = localStorage.getItem("highScore") || "--";
 
+// Initialize UI
 document.querySelector(".tries").textContent = tries;
 document.getElementById("high-score-value").textContent = highScore;
 document.getElementById("score-value").textContent = tries;
@@ -57,10 +58,10 @@ function generateCards() {
     cardElement.classList.add("card");
     cardElement.setAttribute("data-name", card.name);
     cardElement.innerHTML = `
-      <div class="front">
+      <div class="front card-front">
         <img class="card-front" src=${card.image} />
       </div>
-      <div class="back"></div>
+      <div class="back card-back"></div>
     `;
     cardsGrid.appendChild(cardElement);
     cardElement.addEventListener("click", flipCard);
