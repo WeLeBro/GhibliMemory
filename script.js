@@ -10,21 +10,9 @@ let totalPairs;
 let matchedPairs = 0;
 let highScore = localStorage.getItem("highScore") || "--";
 
-// Initialize UI
 document.querySelector(".tries").textContent = tries;
 document.getElementById("high-score-value").textContent = highScore;
 document.getElementById("score-value").textContent = tries;
-
-// Initialize Sakura effect
-document.addEventListener('DOMContentLoaded', function() {
-    initSakura('sakura-container', {
-        colors: [
-            { gradientColorStart: 'rgba(255, 183, 197, 0.9)', gradientColorEnd: 'rgba(255, 197, 207, 0.9)', gradientColorDegree: 120 },
-            { gradientColorStart: 'rgba(255, 181, 179, 0.9)', gradientColorEnd: 'rgba(226, 183, 148, 0.9)', gradientColorDegree: 120 },
-            { gradientColorStart: 'rgba(252, 211, 197, 0.9)', gradientColorEnd: 'rgba(249, 248, 172, 0.9)', gradientColorDegree: 120 }
-        ]
-    });
-});
 
 // Fetch and initialize cards
 fetch("cards.json")
@@ -58,10 +46,10 @@ function generateCards() {
     cardElement.classList.add("card");
     cardElement.setAttribute("data-name", card.name);
     cardElement.innerHTML = `
-      <div class="front card-front">
+      <div class="front">
         <img class="card-front" src=${card.image} />
       </div>
-      <div class="back card-back"></div>
+      <div class="back"></div>
     `;
     cardsGrid.appendChild(cardElement);
     cardElement.addEventListener("click", flipCard);
