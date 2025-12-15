@@ -1,193 +1,128 @@
 body {
-    font-family: 'Bodoni Moda', serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: transparent;
-}
-
-#sakura-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1;
+    background-image: url("./images/background.png");
+    background-size: cover;
+    color: white;
+    font-family: Bodoni, "Bodoni MT", "Didot", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 
 #logo {
-    text-align: center;
-    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 #logo img {
-    max-width: 200px;
-    height: auto;
+    max-height: 2.4em;
+    margin: .3em .3em .3em .3em;
 }
 
-#high-score {
-    position: static;
-    font-family: 'Bodoni Moda', serif;
-    color: white;
-    font-size: 20px;
-    margin-left: 20px;
-}
-
-#score {
-    position: static;
-    font-family: 'Bodoni Moda', serif;
-    color: white;
-    font-size: 20px;
-    margin-right: 20px;
-}
-
-main {
-    flex: 1;
+#made_by {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1;
+}
+
+#tries_title {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bolder;
+    margin-bottom: .5em;
+    margin-top: .8em;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.options button {
+    font-family: Bodoni, "Bodoni MT";
+    padding: 10px 14px;
+    font-size: 13px;
+    border-radius: 15px;
+    background-color: #ffffff56;
+    color: #ffffff;
+    border-style: solid;
+    border-color: #ffffff;
+    font-weight: bold;
+}
+
+.options button:hover {
+    cursor: pointer;
+    transform: scale(.95);
+    background-color: #181818;
+    color: #ffffff;
+    border-color: #ffffff;
+    transition: all 0.2s ease-in-out;
 }
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 20px;
+    justify-content: center;
+    grid-gap: 16px;
+    grid-template-columns: repeat(6, 8em);
+    grid-template-rows: repeat(4, 8em);
 }
 
 .card {
-    aspect-ratio: 1;
-    perspective: 1000px;
+    height: 8em;
+    width: 8em;
+    border-radius: 10px;
+    background-color: white;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.5s;
+    transition: all 0.5s ease-in-out;
 }
 
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-back {
-    background: linear-gradient(to bottom, #6b8bb3, #4a6fa5);
-}
-
-.card-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-#tries_title {
-    font-family: 'Bodoni Moda', serif;
-    color: white;
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.options {
-    margin-top: 20px;
-}
-
-.options button {
-    font-family: 'Bodoni Moda', serif;
-    padding: 10px 20px;
-    font-size: 18px;
-    background: #4a6fa5;
-    color: white;
-    border: none;
-    border-radius: 8px;
+.card:hover {
     cursor: pointer;
-    transition: background 0.3s;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
 }
 
-.options button:hover {
-    background: #6b8bb3;
+.front-card img {
+    width: 60px;
+    height: 60px;
 }
 
-footer {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    color: white;
-    font-family: 'Bodoni Moda', serif;
-    position: relative;
-    z-index: 1;
+.card.flipped {
+    transform: rotateY(180deg);
 }
 
-#win-screen {
-    position: fixed;
+.card.flipped img {
+    max-width: 8em;
+    max-height: 8em;
+}
+
+.front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 10px;
     top: 0;
     left: 0;
-    width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    width: 100%;
+}
+
+.card .front {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 72px;
-    color: white;
-    z-index: 1000;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    font-family: 'Bodoni Moda', serif;
-}
-
-#win-screen.show {
-    opacity: 1;
-}
-
-#win-screen.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-#win-text {
-    font-size: 72px;
-    margin-bottom: 20px;
-}
-
-#score-text {
-    font-size: 36px;
-}
-
-.flipped {
     transform: rotateY(180deg);
 }
 
-.card-back {
-    transform: rotateY(180deg);
+.card .front img {
+    max-width: 8em;
+    max-height: 8em;
+}
+
+.card .back {
+    background-image: url("./images/back_card.png");
+            background-position: center;
+            background-size: cover;
+            backface-visibility: hidden;
+    }
+
+#space {
+    padding: 5px;
 }
