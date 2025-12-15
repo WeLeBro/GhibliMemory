@@ -8,8 +8,10 @@ let lockBoard = false;
 let tries = 0;
 let totalPairs;
 let matchedPairs = 0;
+let highScore = localStorage.getItem("highScore") || "--";
 
 document.querySelector(".tries").textContent = tries;
+document.getElementById("high-score-value").textContent = highScore;
 
 // Fetch and initialize cards
 fetch("cards.json")
@@ -113,32 +115,55 @@ function restart() {
   shuffleCards();
   tries = 0;
   document.querySelector(".tries").textContent = tries;
+  document.getElementById("win-screen").classList.add("hidden");
   generateCards();
 }
 
 // Show win screen with confetti
 function showWinScreen() {
-  confetti({
-    particleCount: 150,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
+  const winScreen = document.getElementById("win-screen");
+  winScreen.classList.remove("hidden");
 
-  const winMessage = document.createElement("div");
-  winMessage.textContent = "You Won!";
-  winMessage.style.position = "fixed";
-  winMessage.style.top = "50%";
-  winMessage.style.left = "50%";
-  winMessage.style.transform = "translate(-50%, -50%)";
-  winMessage.style.fontSize = "48px";
-  winMessage.style.color = "white";
-  winMessage.style.zIndex = "1000";
-  winMessage.style.fontFamily = "Arial, sans-serif";
-  winMessage.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.8)";
+  // Full-screen confetti
+  const duration = 5 * 1000;
+  const end = Date.now() + duration;
+  (function frame() {
+    confetti({
+      particleCount: 7,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: ["#FFC0CB", "#FF69B4", "#FF1493", "#DB7093", "#FF6347", "#FFA07A", "#FF7F50", "#FFD700"],
+    });
+    confetti({
+      particleCount: 7,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: ["#FFC0CB", "#FF69B4", "#FF1493", "#DB7093", "#FF6347", "#FFA07A", "#FF7F50", "#FFD700"],
+    });
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  }());
 
-  document.body.appendChild(winMessage);
+  // Calculate and display score
+  let score;
+  if (tries >= 18 && tries <= 25) {
+    score = "Excellent";
+  } else if (tries >= 26 && tries <= 30) {
+    score = "Good";
+  } else if (tries >= 31 && tries <= 50) {
+    score = "Average";
+  } else {
+    score = "Fair";
+  }
+  document.getElementById("score-value").textContent = score;
 
-  setTimeout(() => {
-    winMessage.remove();
-  }, 5000);
+  // Update high score if applicable
+  if (highScore === "--" || tries < parseInt(highScore)) {
+    highScore = tries;
+    localStorage.setItem("highScore", highScore);
+    document.getElementById("high-score-value").textContent = highScore;
+  }
 }
