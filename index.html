@@ -6,6 +6,7 @@
     <title>Ghibli Memory</title>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sakura.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
@@ -13,6 +14,17 @@
     <style>
         body {
             font-family: 'Bodoni Moda', serif;
+            overflow: hidden;
+            position: relative;
+        }
+        #sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
         #win-screen {
             position: fixed;
@@ -66,9 +78,15 @@
         .options button {
             font-family: 'Bodoni Moda', serif;
         }
+        main {
+            position: relative;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
+    <div id="sakura-container"></div>
+
     <header>
         <div id="high-score">High Score: <span id="high-score-value">--</span></div>
         <h1 id="logo">
@@ -94,6 +112,22 @@
         <div id="score-text"></div>
     </div>
 
+    <script src="sakura.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        // Initialize Sakura effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('sakura-container');
+            container.innerHTML = '<canvas id="sakura"></canvas>';
+            initSakura('sakura', {
+                colors: [
+                    { gradientColorStart: 'rgba(255, 183, 197, 0.9)', gradientColorEnd: 'rgba(255, 197, 207, 0.9)', gradientColorDegree: 120 },
+                    { gradientColorStart: 'rgba(255, 181, 179, 0.9)', gradientColorEnd: 'rgba(226, 183, 148, 0.9)', gradientColorDegree: 120 },
+                    { gradientColorStart: 'rgba(252, 211, 197, 0.9)', gradientColorEnd: 'rgba(249, 248, 172, 0.9)', gradientColorDegree: 120 }
+                ]
+            });
+        });
+    </script>
 </body>
 </html>
