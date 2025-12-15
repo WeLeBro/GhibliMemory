@@ -10,12 +10,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Bodoni Moda', serif;
+        }
+        #win-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 72px;
+            color: white;
+            z-index: 1000;
+            pointer-events: none;
+            font-family: 'Bodoni Moda', serif;
+        }
+        #win-screen.hidden {
+            display: none;
+        }
+        #high-score, #score {
+            position: absolute;
+            top: 20px;
+            font-size: 20px;
+            color: white;
+            font-family: 'Bodoni Moda', serif;
+        }
+        #high-score {
+            left: 20px;
+        }
+        #score {
+            right: 20px;
+        }
+        #tries_title {
+            font-family: 'Bodoni Moda', serif;
+        }
+        .options button {
+            font-family: 'Bodoni Moda', serif;
+        }
+    </style>
 </head>
 <body>
     <header>
+        <div id="high-score">High Score: <span id="high-score-value">--</span></div>
         <h1 id="logo">
             <img src="images/logo.png" alt="Studio Ghibli Logo">
         </h1>
+        <div id="score">Score: <span id="score-value">--</span></div>
     </header>
 
     <main>
@@ -29,6 +74,10 @@
     <footer>
         <p id="made_by">by Wessel Leon Bronswijk</p>
     </footer>
+
+    <div id="win-screen" class="hidden">
+        <h1>YOU WON!</h1>
+    </div>
 
     <script src="script.js"></script>
 </body>
