@@ -6,15 +6,69 @@
     <title>Ghibli Memory</title>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="sakura.scss">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Bodoni Moda', serif;
+        }
+        #win-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 72px;
+            color: white;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            font-family: 'Bodoni Moda', serif;
+        }
+        #win-screen.show {
+            opacity: 1;
+        }
+        #win-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #win-text {
+            font-size: 72px;
+            margin-bottom: 20px;
+        }
+        #score-text {
+            font-size: 36px;
+        }
+        #high-score, #score {
+            position: absolute;
+            top: 20px;
+            font-size: 20px;
+            color: white;
+            font-family: 'Bodoni Moda', serif;
+        }
+        #high-score {
+            left: 20px;
+        }
+        #score {
+            right: 20px;
+        }
+        #tries_title {
+            font-family: 'Bodoni Moda', serif;
+        }
+        .options button {
+            font-family: 'Bodoni Moda', serif;
+        }
+    </style>
 </head>
 <body>
-    <div id="sakura-container"></div>
-
     <header>
         <div id="high-score">High Score: <span id="high-score-value">--</span></div>
         <h1 id="logo">
@@ -25,7 +79,7 @@
 
     <main>
         <div class="cards-grid"></div>
-        <p id="tries_title">Tries: <span class="tries">0</span></p>
+        <p id="tries_title">Tries<span id="space"></span><span class="tries">0</span></p>
         <div class="options">
             <button onclick="restart()">New Game</button>
         </div>
@@ -40,7 +94,6 @@
         <div id="score-text"></div>
     </div>
 
-    <script src="sakura.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
